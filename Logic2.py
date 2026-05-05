@@ -33,7 +33,7 @@ class SBFDetector:
             std = res.get("std_deviation")
             count = res.get("connection_count")
             # Logic2에서 추가된 값
-            jitter = res.get("jitter")
+
 
             if std is None or count is None:
                 continue
@@ -48,16 +48,12 @@ class SBFDetector:
                 print(f"IP : {res['ip']} 자동화 공격 (std: {std:.2f})")
                 block_count += 1
 
-            #  3. 애매 구간 → jitter 활용
-            elif 2<= std < 22:
-                if jitter is not None and jitter < 1.5:
-                    res["status"] = "block"
-                    print(f"IP : {res['ip']} 자동화 의심 (jitter 낮음)")
-                    block_count += 1
-                else:
-                    res["status"] = "suspicious"
-                    print(f"IP : {res['ip']} 랜덤 공격 의심")
-                    suspicious_count += 1
+            #  3. 애매 구간 → jitter.py 를써서 추가 분석 예정
+            elif 2 <= std < 22:
+                res["status"] = "suspicious"
+                print(f"IP : {res['ip']} 애매 구간 (추가 분석 필요)")
+                suspicious_count += 1
+
 
             #  4. 사람 / 랜덤 공격
             else:
