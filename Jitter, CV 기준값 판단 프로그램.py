@@ -14,7 +14,7 @@ class Jitter_CV_detector:
         #path 
         self.base_path = Path("/root/project/app")
         self.Jitter_CV_result_path = self.base_path / "Jitter_CV_result.json"
-        self.Jitter_result_path = self.base_path / "Jitter_result.json
+        self.Jitter_result_path = self.base_path / "Jitter_result.json"
         self.CV_result_path = self.base_path / "CV_result.json" 
 
     def Jitter_openfile(self):
