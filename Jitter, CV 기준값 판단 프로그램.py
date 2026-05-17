@@ -66,7 +66,7 @@ class Jitter_CV_detector:
                 if cv >= 0.35:
 
                     # 일반 slow brute
-                    if 1 <= jitter < 10:
+                    if 0.5 <= jitter < 16:
                         print("일반 슬로우 브루트포스 의심")
 
                         self.result.append({
@@ -77,7 +77,7 @@ class Jitter_CV_detector:
                         })
 
                     # 랜덤화 slow brute
-                    elif 10 <= jitter <= 20:
+                    elif 16<=jitter<=22:
                         print("랜덤화 슬로우 브루트포스 의심")
 
                         self.result.append({
@@ -87,8 +87,15 @@ class Jitter_CV_detector:
                             "type": "randomized_slow_bruteforce"
                         })
 
-                    else:
-                        print("추가 분석 필요")
+                    else:   #CV값이 0.35이상이지만, Jitter 분석 시, 기준 값에 존재하지 않기 때문에 보다 정확한 검사가 필요함 
+                        print("슬로우 브루트 포스 의심 -> 추가 분석을 진행해야 정확한 공격을 파악이 가능합니다.")   #JA3의 도입이 필요하다고 생각함
+
+                        self.result.append({
+                             "ip": ip,
+                            "jitter": jitter,
+                            "cv": cv,
+                            "type": "unknown_slow_bruteforce"
+                        })
 
                 else:
                     print("정상 사용자 가능성 높음")
