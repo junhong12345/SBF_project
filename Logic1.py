@@ -73,7 +73,7 @@ class LogAnalysis:
             print(f"타임스탬프 (전체): {timestamps}")  # 문제3: 전체 출력
             print("-"*40)
 
-    def intervals(self, timestamps):
+    def intervals(self, timestamps):    #REQ-007
         if len(timestamps) < 2:
             return []
 
@@ -84,7 +84,7 @@ class LogAnalysis:
 
         return intervals
 
-    def get_std(self, intervals):
+    def get_std(self, intervals):   #REQ-008
         if not intervals:
             return 0.0
         return np.std(intervals)
